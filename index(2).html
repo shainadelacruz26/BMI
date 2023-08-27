@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <style>
+        input {
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgb(228, 183, 101);
+        }
+        button {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(252, 197, 96);
+            margin-left: 45%;
+        }
+        section {
+            border: 2px solid black;
+            width: 50%;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            margin-left: 30%;
+        }
+    </style>
+    <section>
+    <h1>BMI Calculator</h1>
+    <label for="height">Height (m): </label>
+    <input type="number" id="height" step="0.01" placeholder="Enter height in meters"><br><br>
+    
+    <label for="weight">Weight (kg): </label>
+    <input type="number" id="weight" step="0.01" placeholder="Enter weight in kilograms"><br><br>
+    
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    
+    <p id="result"></p>
+    
+    <script>
+        function calculateBMI() {
+            var height = parseFloat(document.getElementById("height").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+            
+            if (isNaN(height) || isNaN(weight)) {
+                alert("Please enter valid values for height and weight.");
+                return;
+            }
+            
+            var bmi = weight / (height * height);
+            var status = "";
+
+            if (bmi < 18.5) {
+                status = "UNDERWEIGHT";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                status = "NORMAL";
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                status = "OVERWEIGHT";
+            } else {
+                status = "OBESE";
+            }
+            
+            var bmi_status = "Your BMI is " + bmi.toFixed(2) + " (" + status + ")";
+            document.getElementById("result").innerText = bmi_status;
+        }
+    </script>
+    </section>
+</body>
+</html>
